@@ -18,7 +18,6 @@ const Signup = () => {
 
   const fetchData=async()=>{
     try {
-      // const response=await fetch("http://localhost:3000/student_register")
       const response=await fetch(`${import.meta.env.VITE_DB_RENDER}/student_register`);
       const responsedata=await response.json()
       setData(responsedata)
@@ -62,7 +61,6 @@ const Signup = () => {
     };
     
     try {
-      // const postresponse=await fetch("http://localhost:3000/student_register",{
       const postresponse=await fetch(`${import.meta.env.VITE_DB_RENDER}/student_register`,{
         method:'POST',
         headers:{ 'Content-Type':'application/json' },

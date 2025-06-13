@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CompanySelector from '../components/CompanyList';
-// import CompanySelector from './CompanySelector'; // import the selector
-
 
 const Employee_Register_Form = () => {
   const [formdata, setFormdata] = useState({
@@ -83,7 +81,6 @@ const Employee_Register_Form = () => {
     };
 
     try {
-      // const response = await fetch('http://localhost:3000/register', {
       const response = await fetch(`${import.meta.env.VITE_DB_RENDER}/employee_register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

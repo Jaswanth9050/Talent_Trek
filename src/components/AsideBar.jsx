@@ -102,7 +102,7 @@ const AsideBar = ({ onFilterChange }) => {
 
       {/* Skills */}
       <h6>Skills</h6>
-      {["React", "Django", "MongoDB", "MySQL", "JavaScript", "HTML", "CSS"].map((skill) => (
+      {["HTML", "CSS","JavaScript", "Python","Java","React", "Django","MySQL","MongoDB","DevOps","Typing","Ms Excel"].map((skill) => (
         <p key={skill}>
           <input
             className="form-check-input me-2"

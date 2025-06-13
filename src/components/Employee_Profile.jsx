@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-// import { User, Id, Mail, Phone, Briefcase, Key } from 'lucide-react';
 
 const Employee_Profile = () => {
   const[userProfile,setUserProfile]=useState([])
@@ -7,34 +6,26 @@ const Employee_Profile = () => {
   const [isEditing,setIsEditing]=useState(false)
   const [company,setCompany]=useState([])
   const [foundcompany,setFoundcompany]=useState(null)
-
-
   let emp_id=localStorage.getItem("Emp_Id")
-  console.log("profie_Emp_id",emp_id)
-  //____________________________________________________FETCH_ALL_DATA___________________________________
   const fetchProfile=async()=>{
     try {
-      // const profile_response=await fetch('http://localhost:3000/register');
-      const profile_response=await fetch(`${import.meta.env.VITE_DB_RENDER}/register`);
+      const profile_response=await fetch(`${import.meta.env.VITE_DB_RENDER}/employee_register`);
       const profile_data=await profile_response.json();
       setUserProfile(profile_data)
     } catch (error) {
-      console.log("error in fetching",error)
+      alert("Error in Fetching The Data \n Try Again Later")
     }
   }
   useEffect(()=>{
     fetchProfile();
   },[])
-//___________________________________________________FETCH_ONY_EMP_ID_MATCHED_DATA___________________
+
   useEffect(()=>{
     if(userProfile.length>0){
-    console.log("Profile-->",userProfile)
     const Found_Profile=userProfile.find(Found=>Found.Emp_Id===emp_id)
     setFoundProfile(Found_Profile)
     }
   },[userProfile])//it store only emp_id matched data
-  
-  //__________________________EDIT_CHANGES_SESSION_START__________________________________________________________
 
 
   //_____________________________________Track_Changes________________________________
@@ -54,8 +45,7 @@ const handleSave = async (e) => {
   try {
     // ✅ Awaiting fetch inside async fn
     const res = await fetch(
-      // `http://localhost:3000/register/${foundProfile.id}`, 
-      `${import.meta.env.VITE_DB_RENDER}/register/${foundProfile.id}`, 
+      `${import.meta.env.VITE_DB_RENDER}/employee_register/${foundProfile.id}`, 
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -82,7 +72,6 @@ const handleSave = async (e) => {
 
     alert("Profile updated!");
   } catch (err) {
-    console.error("Error saving profile:", err);
     alert("Save failed.");
   }
 };
@@ -101,30 +90,24 @@ useEffect(() => {
   const fetchCompany = async () => {
     try {
       const storedCompanyName = localStorage.getItem("company_name");
-      // const response = await fetch(`http://localhost:3000/company?company_name=${storedCompanyName}`);
       const response = await fetch(`${import.meta.env.VITE_DB_RENDER}/company?company_name=${storedCompanyName}`);
-      
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-
       const data = await response.json();
-      console.log("data--->",data)
       if (data.length > 0) {
         setCompany(data[0]); // Set the first matching company
       } else {
-        console.warn("No company data found.");
+        alert("Sorry Company Data is not Found \n Try Again Later");
       }
     } catch (error) {
-      console.error("Company fetch failed", error);
+      alert("Sorry Company Fetching Failed \n Try Again Later");
     }
     
   };
 
   fetchCompany(); // Call the async function
 }, []);
-console.log("company-->",company)
-
 
   const inputStyle = {
     width: '100%',

@@ -21,8 +21,7 @@ const Application = () => {
   const [jobInfo, setJobInfo] = useState({ title: '', company: '',Emp_Id:'',id:'' });
 
   const today = new Date();
-  const formattedDate = today.toLocaleDateString(); // eg: "6/10/2025"
-  console.log(formattedDate);
+  const formattedDate = today.toLocaleDateString(); 
 
   // Fetch job info
   useEffect(() => {
@@ -34,10 +33,12 @@ const Application = () => {
         if (foundJob) {
           setJobInfo({ title: foundJob.title, company: foundJob.company,Emp_Id:foundJob.Emp_Id,job_id:id });
         } else {
-          console.log("Job not found!");
+          // console.log("Job not found!");
+          alert('Job not found \n Try Again Later')
         }
       } catch (error) {
-        console.error("Failed to fetch job data:", error);
+        // console.error("Failed to fetch job data:", error);
+        alert('Failed to Fetch Job \n Try Again Later')
       }
     };
     fetchJob();
@@ -75,8 +76,6 @@ const Application = () => {
 
     // save the applicatondata in db.json
     try {
-
-
        // ✅ Step 1: Check for duplicate application
       const checkResponse = await fetch(`${import.meta.env.VITE_DB_RENDER}/application_data`);
       const existingApps = await checkResponse.json();
@@ -98,10 +97,9 @@ const Application = () => {
 
       if (!applicationresponse.ok) throw new Error("Failed to store data");
 
-      alert('🎉 Application stored successfully!');
+      // alert('🎉 Application stored successfully!');
 
     } catch (error) {
-      console.error(error);
       alert('❌ Failed to store application data. Try again later.');
       return;
     }
@@ -127,7 +125,6 @@ const Application = () => {
 
       alert("📧 Email sent successfully!");
     } catch (err) {
-      console.error("EmailJS error:", err);
       alert("⚠️ Failed to send email. Please try again.");
     }
 

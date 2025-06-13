@@ -2,10 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Employee_Create_Jobs = () => {
-  
-    // to get localstore Emp_Id
     let emp_id=localStorage.getItem("Emp_Id")
-    console.log(emp_id)
     let company_name_local=localStorage.getItem("company_name")
   // Form data stored one by one
   const [jobForm, setJobForm] = useState({
@@ -42,20 +39,17 @@ const Employee_Create_Jobs = () => {
   // Fetching the data from activejobs in db.json file
   const fetchRegisterData = async () => {
     try {
-      // const response = await fetch('http://localhost:3000/activejobs');
       const response = await fetch(`${import.meta.env.VITE_DB_RENDER}/jobs`);
       const Responsedata = await response.json();
       setJobData(Responsedata);
     } catch (error) {
-      console.log('Error in Fetching', error);
+      alert("Error in Fetching Jobs \n Try Again Later")
     }
   };
 
   useEffect(() => {
     fetchRegisterData();
   }, []);
-
-  console.log(jobData); // ✅ For debug
 
   // Handle form input change
   const handleChangeJobData = (e) => {
@@ -107,7 +101,6 @@ const Employee_Create_Jobs = () => {
     };
 
     try {
-      // const jobresponse = await fetch('http://localhost:3000/activejobs', {
       const jobresponse = await fetch(`${import.meta.env.VITE_DB_RENDER}/jobs`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -137,7 +130,7 @@ const Employee_Create_Jobs = () => {
       go('/employee/posted_jobs'); // ✅ Fixed: uncommented navigation
 
     } catch (error) {
-      console.log('Error in submitting data', error);
+      alert('Error In Submitting Data \n Try Again Later')
     }
   };
 

@@ -13,7 +13,6 @@ const Login = () => {
 
   // Fetch student data from db.json
   const fetchData = async () => {
-    // const res = await fetch("http://localhost:3000/student_register");
     const res = await fetch(`${import.meta.env.VITE_DB_RENDER}/student_register`);
     const resdata = await res.json();
     setData(resdata);

@@ -13,7 +13,6 @@ const JobDetails = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        // const response = await fetch("http://localhost:3000/activejobs");
         const response = await fetch(`${import.meta.env.VITE_DB_RENDER}/jobs`);
         const data = await response.json();
         const foundJob = data.find((item) => item.id === id);
@@ -34,7 +33,6 @@ const JobDetails = () => {
     const fetchCompany = async () => {
       try {
         if (company.trim() !== "") {
-          // const response = await fetch(`http://localhost:3000/company?company_name=${company}`);
           const response = await fetch(`${import.meta.env.VITE_DB_RENDER}/company?company_name=${company}`);
           const data = await response.json();
           if (data.length > 0) {
@@ -97,7 +95,6 @@ const JobDetails = () => {
             />
           </div>
           <div className="col-md-9">
-            {/* className="p-4 shadow rounded-4 bg-light border mb-4" */}
             <div>
               <div className="row align-items-center">
                 <div className="col-md-9">

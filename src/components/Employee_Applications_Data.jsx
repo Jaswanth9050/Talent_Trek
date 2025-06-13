@@ -9,7 +9,6 @@ const Employee_Applications_Data = () => {
 
   const fetchData = async () => {
     try {
-      // const res = await fetch('http://localhost:3000/application_data');
       const res = await fetch(`${import.meta.env.VITE_DB_RENDER}/application_data`);
       const resData = await res.json();
 
@@ -18,19 +17,17 @@ const Employee_Applications_Data = () => {
 
       setData(filterData);
     } catch (error) {
-      console.log("Error in Fetching", error);
+      alert("Error in Fetching Data \n Try Again Later")
     }
   };
   const application_count=data.length
-  console.log(application_count)
 
   const handleDelete = async (id) => {
     try {
-      // await fetch(`http://localhost:3000/application_data/${id}`, { method: 'DELETE' });
       await fetch(`${import.meta.env.VITE_DB_RENDER}/application_data/${id}`, { method: 'DELETE' });
       setData(prev => prev.filter(job => job.id !== id));
     } catch (error) {
-      console.error('Error deleting data:', error);
+      alert("Error To Deleteing Data \n Try Again Later")
     }
   };
 
@@ -100,9 +97,6 @@ const Employee_Applications_Data = () => {
                     ) : (
                     <p className="text-danger mt-4">Resume not uploaded.</p>
                 )}
-
-
-              
             </div>
           </div>
         )) : (

@@ -45,7 +45,6 @@ const Category = () => {
         WebkitTextFillColor: 'transparent',
         fontSize: '2.2rem',
         fontWeight: '800',
-        // color:'white'
       }}>
         💼 Explore Job Categories
       </h2>

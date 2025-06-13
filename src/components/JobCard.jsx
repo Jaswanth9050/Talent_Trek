@@ -25,17 +25,13 @@ const JobCard = ({ job }) => {
   useEffect(() => {
     const fetchCompany = async () => {
       try {
-        console.log("Fetching for company:", company); // Debug
-        // const response = await fetch(`http://localhost:3000/company?company_name=${company}`);
         const response = await fetch(`${import.meta.env.VITE_DB_RENDER}/company?company_name=${company}`);
         const data = await response.json();
-        console.log("Fetched company data:", data); // Debug
-  
         if (data.length > 0) {
           setCompanyData(data[0]);
         }
       } catch (error) {
-        console.error("Fetch error:", error);
+        alert("Error To Fetch The Data \n Try Again Later")
       }
     };
   

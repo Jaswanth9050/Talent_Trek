@@ -7,19 +7,16 @@ const Employee = () => {
 
   const [user, setUser] = useState([]); // ✅ Initialized as array because we're using .length
   const [filterData, setFilterData] = useState(null); // ✅ For storing the matched employee data
-
   const emp_id = localStorage.getItem("Emp_Id"); // ✅ Fetching Emp_Id from localStorage
-  console.log("Stored Emp_Id:", emp_id);
 
   // ✅ Fetch all registered users on component mount
   const fetchData = async () => {
     try {
-      // const Register_response = await fetch('http://localhost:3000/register');
       const Register_response = await fetch(`${import.meta.env.VITE_DB_RENDER}/employee_register`);
       const Register_Data = await Register_response.json();
       setUser(Register_Data); // ✅ Set user array
     } catch (error) {
-      console.error('Error fetching the data:', error);
+      alert('Sorry Data Fetching Faild \n Try Again Later')
     }
   };
 
@@ -31,7 +28,6 @@ const Employee = () => {
     // ✅ Run when user data is loaded
     if (user.length > 0) {
       const foundData = user.find(u => u.Emp_Id === emp_id); // ✅ Match current employee
-      console.log("Found User:", foundData);
       setFilterData(foundData);
 
       // ✅ Store the employee's company name in localStorage (if found)

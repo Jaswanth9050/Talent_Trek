@@ -62,7 +62,7 @@ const NavBar = () => {
               <>
               <li className="nav-item ms-2">
                 <Link to='/profile' className='nav-link fw-semibold text-dark'>
-                <i class="bi bi-person-fill"></i>
+                <i className="bi bi-person-fill"></i>
                 </Link>
               </li>
                 <li className="nav-item mx-2">

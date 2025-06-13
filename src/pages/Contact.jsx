@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
 
@@ -137,25 +138,76 @@ const Contact = () => {
       </section>
 
       {/* Meet the Team Section */}
-      <section className="bg-white py-5">
-        <div className="container text-center">
-          <h2 className="text-secondary mb-4" style={{
+    <section className="bg-white py-5">
+      <div className="container text-center">
+        <h2
+          className="text-secondary mb-4"
+          style={{
             background: 'linear-gradient(45deg, rgba(255, 85, 85, 1), rgba(0, 204, 255, 1))',
             WebkitBackgroundClip: 'text',
-            color: 'transparent'
-          }}>Meet Our Support Team</h2>
-          <div className="row justify-content-center">
-            {["Anjali", "Rahul", "Priya"].map((name, idx) => (
-              <div className="col-md-3 mx-3" key={idx}>
-                <img src={`https://randomuser.me/api/portraits/${idx % 2 === 0 ? "women" : "men"}/${idx + 10}.jpg`}
-                     className="rounded-circle mb-3" width="100" alt={name} />
-                <h5>{name} Verma</h5>
-                <p className="text-muted">Support Executive</p>
+            WebkitTextFillColor: 'transparent',
+            color: 'transparent',
+          }}
+        >
+          Meet the Creator
+        </h2>
+
+        <div className="row justify-content-center">
+          <div className="col-md-4 position-relative">
+            <div className="profile-img-wrapper mx-auto position-relative" style={{ width: '120px', height: '120px' }}>
+              <img
+                src='jas.jpg'
+                className="rounded-circle mb-3 w-100 h-100"
+                alt="Jaswanth Babu"
+                style={{
+                  objectFit: 'cover',
+                  boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
+                  transition: '0.3s ease-in-out',
+                }}
+              />
+              <div className="social-icons-overlay d-flex justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100">
+                <a
+                  href="https://www.linkedin.com/in/jaswanth-babu-931112249/"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ color: 'white', fontSize: '20px', margin: '0 10px' }}
+                >
+                  <FaLinkedin />
+                </a>
+                <a
+                  href="https://github.com/Jaswanth9050"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ color: 'white', fontSize: '20px', margin: '0 10px' }}
+                >
+                  <FaGithub />
+                </a>
               </div>
-            ))}
+            </div>
+
+            <h5 style={{ fontWeight: '600' }}>Jaswanth Babu</h5>
+            <p className="text-muted">Full Stack Python Developer</p>
+            <p className='text-muted'>Creator of This Website</p>
           </div>
         </div>
-      </section>
+      </div>
+
+      {/* CSS for hover effect */}
+      <style>{`
+        .profile-img-wrapper .social-icons-overlay {
+          background-color: rgba(0, 0, 0, 0.6);
+          border-radius: 50%;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          pointer-events: none;
+        }
+
+        .profile-img-wrapper:hover .social-icons-overlay {
+          opacity: 1;
+          pointer-events: auto;
+        }
+      `}</style>
+    </section>
 
       {/* Newsletter Section */}
       <section className="py-5 bg-primary text-white text-center">

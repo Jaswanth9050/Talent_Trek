@@ -17,7 +17,8 @@ const Employee_Posted_Jobs = () => {
       const data = await response.json();
       setJobsData(data);
     } catch (error) {
-      console.log("Error in fetching:", error);
+      // console.log("Error in fetching:", error);
+      alert("Error In Fetching Jobs \n Try Again Later")
     }
   };
 
@@ -34,17 +35,13 @@ const Employee_Posted_Jobs = () => {
 
   const handleDelete = async (id) => {
     try {
-      // await fetch(`http://localhost:3000/activejobs/${id}`, { method: 'DELETE' });
       await fetch(`${import.meta.env.VITE_DB_RENDER}/jobs/${id}`, { method: 'DELETE' });
       setJobsData(prev => prev.filter(job => job.id !== id));
     } catch (error) {
-      console.error('Error deleting data:', error);
+      alert("Error In Fetching Jobs \n Try Again Later")
     }
   };
   const company_name_local=localStorage.getItem("company_name")
-
-  
-
   const handleEditClick = (job) => {
     setEditingJobId(job.id);
     setEditFormData({
@@ -59,7 +56,6 @@ const Employee_Posted_Jobs = () => {
       reviews:job.reviews,
       opening:job.opening,
       skills: Array.isArray(job.skills) ? job.skills.join(', ') : '',
-
       company:company_name_local,
       posted: '',
     });
@@ -82,8 +78,6 @@ const Employee_Posted_Jobs = () => {
         Emp_Id: emp_id
 
       };
-
-      // await fetch(`http://localhost:3000/activejobs/${editingJobId}`, {
       await fetch(`${import.meta.env.VITE_DB_RENDER}/jobs/${editingJobId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -98,14 +92,9 @@ const Employee_Posted_Jobs = () => {
       setEditingJobId(null);
       setEditFormData({});
     } catch (error) {
-      console.error('Error updating job:', error);
+      alert("Error In Fetching Jobs \n Try Again Later")
     }
-
-    
-
-  
   };
-  //______________________________________________________________________
   // fetching the company
 
   const[company,setCompany]=useState(null)
@@ -114,32 +103,22 @@ const Employee_Posted_Jobs = () => {
     const fetchCompany = async () => {
       try {
         const storedCompanyName = localStorage.getItem("company_name");
-        // const response = await fetch(`http://localhost:3000/company?company_name=${storedCompanyName}`);
         const response = await fetch(`${import.meta.env.VITE_DB_RENDER}/company?company_name=${storedCompanyName}`);
-        
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-  
         const data = await response.json();
-        console.log("data--->",data)
         if (data.length > 0) {
           setCompany(data[0]); // Set the first matching company
         } else {
-          console.warn("No company data found.");
+          alert("No company data found. \n Try Again Later")
         }
       } catch (error) {
-        console.error("Company fetch failed", error);
+        alert("Company fetching failed. \n Try Again Later")
       }
-      
     };
-  
     fetchCompany(); // Call the async function
   }, []);
-  console.log("company-->",company)
-  
-  
-
   return (
     <div className='col-12 col-md-8 col-lg-9'>
       <h1 className='text-center text-white mb-4'>Posted Jobs</h1>
@@ -214,7 +193,6 @@ const Employee_Posted_Jobs = () => {
                         <li className="mb-2">
                           <strong className="text-primary">Posted:</strong> {getTimeAgo(job.posted)}
                         </li>
-                        {/* <p><strong>Posted:</strong> {getTimeAgo(job.posted)}</p> */}
                       </ul>
                     </div>
 
@@ -239,7 +217,6 @@ const Employee_Posted_Jobs = () => {
                       )}
                     </div>
                   </div>
-
                     <div className="d-flex justify-content-end my-2">
                       <button className="btn btn-outline-primary me-2" onClick={() => handleEditClick(job)}>Edit</button>
                       <button className="btn btn-outline-danger" onClick={() => handleDelete(job.id)}>Delete</button>

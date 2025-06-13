@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
 
 const About = () => {
   return (
@@ -10,7 +11,6 @@ const About = () => {
       <div
         className="text-white d-flex align-items-center"
         style={{
-          // backgroundImage: "url('/src/assets/jobimg.jpg')",
           backgroundImage: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPB7C_P3M_Tq4PdpipmJ9Dy96LdG5BJqOmIw&s')",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -48,7 +48,9 @@ const About = () => {
               <p className="mt-3">
                 Talent Trek is your ultimate guide to navigating the job market. We connect talented individuals with exciting opportunities, helping you discover your ideal career path. Whether you're just starting out or aiming for your dream executive role, we support your journey every step of the way.
               </p>
-              <button className="btn btn-light mt-3">Explore Careers</button>
+              <Link to='/jobs'>
+                <button className="btn btn-light mt-3">Explore Careers</button>
+              </Link>
             </div>
             <div className="col-md-6">
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPB7C_P3M_Tq4PdpipmJ9Dy96LdG5BJqOmIw&s"width={"738px"} height={"540px"} alt="Job" className="img-fluid rounded shadow" />
@@ -112,7 +114,9 @@ const About = () => {
         <div className="container">
           <h2 className="fw-bold">Start Your Journey with Talent Trek</h2>
           <p className="lead">Sign up to explore top jobs, get expert career advice, and more.</p>
-          <button className="btn btn-light px-4 py-2 fw-bold mt-2">Join Now</button>
+          <Link to={'/jobs'}>
+            <button className="btn btn-light px-4 py-2 fw-bold mt-2">Join Now</button>
+          </Link>
         </div>
       </section>
       <Footer/>

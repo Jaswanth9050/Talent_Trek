@@ -16,7 +16,6 @@ const Employee_Login = () => {
     }
 
     try {
-      // const res = await fetch('http://localhost:3000/employee_register');
       const res = await fetch(`${import.meta.env.VITE_DB_RENDER}/employee_register`);
       const users = await res.json();
       const found = users.find(

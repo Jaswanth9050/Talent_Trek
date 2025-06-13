@@ -17,7 +17,6 @@ const StudentProfile = () => {
 
   const fetchData = async () => {
     try {
-      // const res = await fetch(`http://localhost:3000/student_register?id=${studentid}`);
       const res = await fetch(`${import.meta.env.VITE_DB_RENDER}/student_register?id=${studentid}`);
       const data = await res.json();
       if (data.length > 0) {
@@ -27,7 +26,7 @@ const StudentProfile = () => {
         setApplication(null);
       }
     } catch (err) {
-      console.error('Error fetching student data:', err);
+      alert('Error Fetching Student Data')
     }
   };
 
@@ -42,7 +41,6 @@ const StudentProfile = () => {
 
   const handleSave = async () => {
     try {
-      // const res = await fetch(`http://localhost:3000/student_register/${formData.id}`, {
       const res = await fetch(`${import.meta.env.VITE_DB_RENDER}/student_register/${formData.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -57,10 +55,9 @@ const StudentProfile = () => {
         alert('Failed to update profile');
       }
     } catch (error) {
-      console.error('Error updating profile:', error);
+      alert("Error in Updating Profile \n Try Again Later")
     }
     localStorage.setItem("user",formData.name)
-    console.log(formData.name,"formData.name")
   };
 
 

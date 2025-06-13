@@ -14,8 +14,6 @@ const ResetPassword = () => {
 
   const handleEmailSubmit = async (e) => {
   e.preventDefault();
-
-  // const res = await fetch("http://localhost:3000/student_register");
   const res = await fetch(`${import.meta.env.VITE_DB_RENDER}/student_register`);
   const data = await res.json();
 
@@ -91,7 +89,6 @@ const ResetPassword = () => {
     }
 
     // Update password in db.json
-    // const res = await fetch("http://localhost:3000/student_register");
     const res = await fetch(`${import.meta.env.VITE_DB_RENDER}/student_register`);
     const users = await res.json();
 
@@ -99,8 +96,6 @@ const ResetPassword = () => {
 
     if (user) {
       const updatedUser = { ...user, password: newPassword };
-
-      // await fetch(`http://localhost:3000/student_register/${user.id}`, {
       await fetch(`${import.meta.env.VITE_DB_RENDER}/student_register/${user.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },

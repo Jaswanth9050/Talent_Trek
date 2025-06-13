@@ -23,7 +23,6 @@ function CompanySelector({ selectedCompany, setFormdata }) {
   });
 
   useEffect(() => {
-    // fetch("http://localhost:3000/company")
     fetch(`${import.meta.env.VITE_DB_RENDER}/company`)
       .then(res => res.json())
       .then(data => setCompanies(data));
@@ -64,8 +63,6 @@ function CompanySelector({ selectedCompany, setFormdata }) {
       alert("Company already exists!");
       return;
     }
-
-    // const res = await fetch("http://localhost:3000/company", {
     const res = await fetch(`${import.meta.env.VITE_DB_RENDER}/company`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -92,10 +89,9 @@ function CompanySelector({ selectedCompany, setFormdata }) {
   };
 
   const handleSaveEdit = () => {
-    setCompanyDetails(tempCompanyDetails); // ✅ save changes to real state
+    setCompanyDetails(tempCompanyDetails);
     setTempCompanyDetails(null);
     setEditing(false);
-    // You may optionally send update to backend here
   };
 
   return (
@@ -194,7 +190,6 @@ function CompanySelector({ selectedCompany, setFormdata }) {
                   setTempCompanyDetails(null); // ✅ discard changes
                   setEditing(false);
                 }}
-                // style={{ background: '#e53e3e', color: 'white', padding: '6px 12px' }}
                 className='btn btn-outline-danger'
               >
                 Cancel
