@@ -55,6 +55,3 @@ A modern Job Portal Web Application inspired by platforms like **Naukri**, **Apn
     - Form for name, image, founder, size, website, and more
 
 ---
-
-## 📦 Project Structure
-
